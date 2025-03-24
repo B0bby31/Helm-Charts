@@ -13,4 +13,4 @@ helm repo add b0bby31 https://b0bby31.github.io/Helm-Charts
 
 If you had already added this repo earlier, run `helm repo update` to retrieve the latest versions of the packages.
 
-You can then run `helm search repo gerkelznik` to see the charts.
+You can then run `helm search repo b0bby31` to see the charts.
