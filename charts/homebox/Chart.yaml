@@ -1,0 +1,12 @@
+apiVersion: v2
+name: homebox
+description: A Helm chart for HomeBox
+type: application
+version: 0.1.0
+appVersion: "0.18.0"
+maintainers:
+- email: b0bby31@plutode.com
+  name: B0bby31
+sources:
+- https://github.com/sysadminsmedia/homebox
+- https://github.com/B0bby31/Helm-Charts
