@@ -17,4 +17,15 @@ entries:
     urls:
     - https://github.com/B0bby31/Helm-Charts/releases/download/homebox-0.1.0/homebox-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-24T16:47:34.747343555Z"
+  split-pro:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-03-25T00:09:03.517491996Z"
+    description: A Helm chart for Kubernetes
+    digest: bd8c3bb25ee5d160c057224f035920a636bce12b62ac4011c1f6e46fc1287309
+    name: split-pro
+    type: application
+    urls:
+    - https://github.com/B0bby31/Helm-Charts/releases/download/split-pro-0.1.0/split-pro-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-03-25T00:09:03.517496034Z"
