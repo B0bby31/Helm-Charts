@@ -60,17 +60,17 @@ spec:
               mountPath: /tmp
           env:
             - name: HBOX_DATABASE_DRIVER
-              value: postgres
+              value: "postgres"
             - name: HBOX_DATABASE_HOST
-              value: {{ .Values.database.host }}
+              value: "{{ .Values.database.host }}"
             - name: HBOX_DATABASE_PORT
-              value: {{ .Values.database.port }}
+              value: "{{ .Values.database.port }}"
             - name: HBOX_DATABASE_USERNAME
-              values: {{ .Values.database.user }}
+              values: "{{ .Values.database.user }}"
             - name: HBOX_DATABASE_PASSWORD
-              values: {{ .Values.database.password }}
+              values: "{{ .Values.database.password }}"
             - name: HBOX_DATABASE_DATABASE
-              values: {{ .Values.database.dbname }}
+              values: "{{ .Values.database.dbname }}"
             - name: HBOX_DATABASE_SSL_MODE
               values: "allow"
       volumes:
