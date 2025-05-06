@@ -2,7 +2,7 @@ apiVersion: v2
 name: homebox
 description: A Helm chart for HomeBox
 type: application
-version: 0.2.2
+version: 0.2.3
 appVersion: "0.18.0"
 maintainers:
 - email: b0bby31@plutode.com

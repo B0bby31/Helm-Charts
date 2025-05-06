@@ -66,13 +66,13 @@ spec:
             - name: HBOX_DATABASE_PORT
               value: "{{ .Values.database.port }}"
             - name: HBOX_DATABASE_USERNAME
-              values: "{{ .Values.database.user }}"
+              value: "{{ .Values.database.user }}"
             - name: HBOX_DATABASE_PASSWORD
-              values: "{{ .Values.database.password }}"
+              value: "{{ .Values.database.password }}"
             - name: HBOX_DATABASE_DATABASE
-              values: "{{ .Values.database.dbname }}"
+              value: "{{ .Values.database.dbname }}"
             - name: HBOX_DATABASE_SSL_MODE
-              values: "allow"
+              value: "allow"
       volumes:
         - name: tmp
           emptyDir: {}
