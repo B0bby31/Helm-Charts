@@ -72,7 +72,7 @@ spec:
             - name: HBOX_DATABASE_DATABASE
               value: "{{ .Values.database.dbname }}"
             - name: HBOX_DATABASE_SSL_MODE
-              value: "allow"
+              value: "require"
       volumes:
         - name: tmp
           emptyDir: {}
