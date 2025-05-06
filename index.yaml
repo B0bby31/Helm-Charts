@@ -3,6 +3,22 @@ entries:
   homebox:
   - apiVersion: v2
     appVersion: 0.18.0
+    created: "2025-05-06T14:45:02.521648722Z"
+    description: A Helm chart for HomeBox
+    digest: ff1dbdba052472f05123599ae86d27e8a642b87f6e34bf0880acfeaaf6a64842
+    maintainers:
+    - email: b0bby31@plutode.com
+      name: B0bby31
+    name: homebox
+    sources:
+    - https://github.com/sysadminsmedia/homebox
+    - https://github.com/B0bby31/Helm-Charts
+    type: application
+    urls:
+    - https://github.com/B0bby31/Helm-Charts/releases/download/homebox-0.2.1/homebox-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: 0.18.0
     created: "2025-03-24T16:47:34.747337514Z"
     description: A Helm chart for HomeBox
     digest: 6f90fcf220b5242edfbaec4a993548d3ee80dbff1e807d59f3e46e8c2adb3a7a
@@ -28,4 +44,4 @@ entries:
     urls:
     - https://github.com/B0bby31/Helm-Charts/releases/download/split-pro-0.1.0/split-pro-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-25T00:09:03.517496034Z"
+generated: "2025-05-06T14:45:02.521662628Z"
