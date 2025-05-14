@@ -79,6 +79,18 @@ spec:
             - name: FEEDBACK_EMAIL
               value: "{{ .Values.feedbackEmail }}"
             {{- end }}
+            {{- if .Values.email.enabled }}
+            - name: FROM_EMAIL
+              value: "{{ .Values.email.fromEmail }}"
+            - name: EMAIL_SERVER_HOST
+              value: "{{ .Values.email.smtp.host }}"
+            - name: EMAIL_SERVER_PORT
+              value: "{{ .Values.email.smtp.port }}"
+            - name: EMAIL_SERVER_USER
+              value: "{{ .Values.email.smtp.user }}"
+            - name: EMAIL_SERVER_PASSWORD
+              value: "{{ .Values.email.smtp.password }}"
+            {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

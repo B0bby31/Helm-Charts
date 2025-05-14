@@ -20,7 +20,7 @@ database:
 
 nextauth:
   # Configure this to be the same as your ingress url
-  url: https://split.de.plutode.com
+  url: https://split.example.com
   urlInternal: http://localhost:3000
 
 ingress:
@@ -44,6 +44,13 @@ ingress:
 # Configure the ability to send out invites to people
 email:
   enabled: false
+  fromEmail: split@example.com
+  smtp:
+    host: smtp.example.com
+    port: 25
+    user: example
+    password: ""
+
 
 # Configure a feedback email
 feedbackEmail: ""
