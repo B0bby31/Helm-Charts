@@ -83,6 +83,23 @@ entries:
     version: 0.1.0
   split-pro:
   - apiVersion: v2
+    appVersion: v1.3.4
+    created: "2025-05-14T14:28:20.797470998Z"
+    description: A Helm chart for Split-Pro
+    digest: 8342e2f2513e0cf32c847a7452f6e34157f8a3a6f94196e3980f16b78c729fc3
+    icon: https://splitpro.app/logo_circle.png
+    maintainers:
+    - email: b0bby31@plutode.com
+      name: B0bby31
+    name: split-pro
+    sources:
+    - https://github.com/oss-apps/split-pro
+    - https://github.com/B0bby31/Helm-Charts
+    type: application
+    urls:
+    - https://github.com/B0bby31/Helm-Charts/releases/download/split-pro-0.2.1/split-pro-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
     appVersion: 1.16.0
     created: "2025-03-25T00:09:03.517491996Z"
     description: A Helm chart for Kubernetes
@@ -92,4 +109,4 @@ entries:
     urls:
     - https://github.com/B0bby31/Helm-Charts/releases/download/split-pro-0.1.0/split-pro-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-06T15:29:57.669018451Z"
+generated: "2025-05-14T14:28:20.797492458Z"
