@@ -1,5 +1,6 @@
 apiVersion: v2
 name: homebox
+icon: https://raw.githubusercontent.com/sysadminsmedia/homebox/refs/heads/main/docs/public/lilbox.svg
 description: A Helm chart for HomeBox
 type: application
 version: 0.2.4
