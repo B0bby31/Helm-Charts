@@ -55,6 +55,9 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          volumeMounts:
+            - name: app
+              mountPath: /app
           env:
             - name: DATABASE_URL
               value: "postgresql://{{ .Values.database.host }}:{{ .Values.database.port }}"
@@ -91,6 +94,9 @@ spec:
             - name: EMAIL_SERVER_PASSWORD
               value: "{{ .Values.email.smtp.password }}"
             {{- end }}
+      volumes:
+        - name: app
+          emptyDir: {}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
