@@ -84,6 +84,23 @@ entries:
   split-pro:
   - apiVersion: v2
     appVersion: v1.3.4
+    created: "2025-05-16T13:39:49.839329269Z"
+    description: A Helm chart for Split-Pro
+    digest: 73f431b0b42579848e4b0c7da07327c1c4ac5bf0cbd618f58d2d80ef1d070ae0
+    icon: https://splitpro.app/logo_circle.png
+    maintainers:
+    - email: b0bby31@plutode.com
+      name: B0bby31
+    name: split-pro
+    sources:
+    - https://github.com/oss-apps/split-pro
+    - https://github.com/B0bby31/Helm-Charts
+    type: application
+    urls:
+    - https://github.com/B0bby31/Helm-Charts/releases/download/split-pro-0.2.5/split-pro-0.2.5.tgz
+    version: 0.2.5
+  - apiVersion: v2
+    appVersion: v1.3.4
     created: "2025-05-16T13:31:51.326501164Z"
     description: A Helm chart for Split-Pro
     digest: 68d50d656653b0151335d6b7ab3ceec0ff5851d38ca67afee996a8eb6a73e258
@@ -160,4 +177,4 @@ entries:
     urls:
     - https://github.com/B0bby31/Helm-Charts/releases/download/split-pro-0.1.0/split-pro-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-16T13:31:51.326537552Z"
+generated: "2025-05-16T13:39:49.839366739Z"
