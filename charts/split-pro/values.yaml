@@ -21,7 +21,8 @@ database:
 nextauth:
   # Configure this to be the same as your ingress url
   url: https://split.example.com
-  urlInternal: http://localhost:3000
+  # IMPORTANT: the pod does not listen on local host, so use CoreDNS to inject a service ip e.g.:
+  urlInternal: http://split-pro.default.svc.cluster.local
 
 ingress:
   enabled: false
