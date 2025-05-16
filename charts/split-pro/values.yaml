@@ -88,15 +88,13 @@ affinity: {}
 podAnnotations: {}
 podLabels: {}
 
-podSecurityContext:
-  fsGroup: 1000
-  runAsUser: 1000
-  runAsGroup: 1000
+podSecurityContext: {}
 
 securityContext:
   capabilities:
     drop:
     - ALL
+  allowPrivilegeEscalation: false
   runAsNonRoot: true
 
 service:
