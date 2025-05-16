@@ -83,19 +83,14 @@ tolerations: []
 affinity: {}
 
 
-# Sensible defaults (No need to really change these)
+# Sensible defaults
 
 podAnnotations: {}
 podLabels: {}
 
 podSecurityContext: {}
 
-securityContext:
-  capabilities:
-    drop:
-    - ALL
-  allowPrivilegeEscalation: false
-  runAsNonRoot: true
+securityContext: {}
 
 service:
   type: ClusterIP

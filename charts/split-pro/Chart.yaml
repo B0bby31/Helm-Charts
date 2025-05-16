@@ -3,7 +3,7 @@ name: split-pro
 icon: https://splitpro.app/logo_circle.png
 description: A Helm chart for Split-Pro
 type: application
-version: 0.2.4
+version: 0.2.5
 appVersion: "v1.3.4"
 maintainers:
 - email: b0bby31@plutode.com
