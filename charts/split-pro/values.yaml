@@ -15,7 +15,7 @@ database:
   host: cnpg-database-cluster-rw.cnpg-database.svc.cluster.local
   port: 5432
   user: app
-  password: 
+  password: ""
   dbname: splitpro
 
 nextauth:
