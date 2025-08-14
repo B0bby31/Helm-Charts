@@ -1,0 +1,94 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ include "cert-manager-webhook-njalla.fullname" . }}-test"
+  labels:
+    app.kubernetes.io/name: {{ include "cert-manager-webhook-njalla.name" . }}
+  annotations:
+    "helm.sh/hook": test
+    helm.sh/hook-weight: "2"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded,hook-failed
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      serviceAccountName: njalla-webhook-test-sa
+      restartPolicy: Never
+      containers:
+        - name: test
+          image: bitnami/kubectl:latest
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -e
+            
+              {{- if (empty .Values.email) }}
+              echo "You must set `email` to a valid email in values.yaml to run the test"
+              exit 1
+              {{- end }}
+
+              # Wait for the cert-manager webhook pod to be ready
+              echo "Waiting for webhook pod to be ready..."
+              if ! kubectl wait --for=condition=Ready pod -l app={{ include "cert-manager-webhook-njalla.name" . }} -n {{ .Values.namespace }} --timeout=60s; then
+                echo "Webhook pod did not become ready within 60 seconds"
+                exit 1
+              fi
+
+              # Apply a test Issuer using the webhook
+              cat <<EOF | kubectl apply -f -
+              apiVersion: cert-manager.io/v1
+              kind: Issuer
+              metadata:
+                name: test-njalla-issuer
+                namespace: {{ .Values.namespace }}
+              spec:
+                acme:
+                  server: https://acme-staging-v02.api.letsencrypt.org/directory
+                  email: {{ .Values.email }}
+                  privateKeySecretRef:
+                    name: test-njalla-issuer
+                  solvers:
+                  - dns01:
+                      webhook:
+                        groupName: {{ .Values.groupName }}
+                        solverName: njalla
+                        config:
+                          apiKeySecretRef:
+                            name: njalla-secrets
+                            key: token
+              EOF
+
+              # Apply a test Certificate
+              cat <<EOF | kubectl apply -f -
+              apiVersion: cert-manager.io/v1
+              kind: Certificate
+              metadata:
+                name: test-cert-njalla
+                namespace: {{ .Values.namespace }}
+              spec:
+                secretName: test-cert-tls
+                issuerRef:
+                  name: test-njalla-issuer
+                  kind: Issuer
+                commonName: {{ .Values.groupName }}
+                dnsNames:
+                  - {{ .Values.groupName }}
+              EOF
+
+              # Wait until the certificate is ready
+              if ! kubectl wait --for=condition=Ready certificate/test-cert-njalla -n {{ .Values.namespace }} --timeout=1200s; then
+                echo "Staging cert did not become ready in 20mins"
+                echo "Cleaning up test resources..."
+                kubectl delete issuer test-njalla-issuer -n {{ .Values.namespace }} || true
+                kubectl delete certificate test-cert-njalla -n {{ .Values.namespace }} || true
+                echo "Cleanup complete."
+                exit 1
+              fi
+
+              echo "Cleaning up test resources..."
+              kubectl delete issuer test-njalla-issuer -n {{ .Values.namespace }} || true
+              kubectl delete certificate test-cert-njalla -n {{ .Values.namespace }} || true
+              echo "Cleanup complete."
+
+

@@ -1,0 +1,12 @@
+apiVersion: v2
+name: cert-manager-webhook-njalla
+description: A Helm chart to deploy a webhook ACME solver for Njalla
+type: application
+version: 0.1.0
+appVersion: "v0.2.1"
+maintainers:
+- email: b0bby31@plutode.com
+  name: B0bby31
+sources:
+- https://github.com/B0bby31/cert-manager-webhook-njalla
+- https://github.com/B0bby31/Helm-Charts

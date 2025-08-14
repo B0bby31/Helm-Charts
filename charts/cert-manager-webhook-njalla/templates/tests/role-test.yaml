@@ -1,0 +1,33 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: njalla-webhook-test-role
+  namespace: {{ .Values.namespace }}
+  annotations:
+    helm.sh/hook: test
+    helm.sh/hook-weight: "1"
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded,hook-failed
+rules:
+  - apiGroups: ["cert-manager.io"]
+    resources: ["issuers", "certificates"]
+    verbs: ["get","create","update","delete","patch","list","watch"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: njalla-webhook-test-rb
+  namespace: {{ .Values.namespace }}
+  annotations:
+    helm.sh/hook-weight: "1"
+    helm.sh/hook: test
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded,hook-failed
+subjects:
+  - kind: ServiceAccount
+    name: njalla-webhook-test-sa
+roleRef:
+  kind: Role
+  name: njalla-webhook-test-role
+  apiGroup: rbac.authorization.k8s.io

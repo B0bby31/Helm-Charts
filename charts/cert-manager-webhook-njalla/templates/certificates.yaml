@@ -1,0 +1,32 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Values.caSecretName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "cert-manager-webhook-njalla.name" . }}
+spec:
+  secretName: {{ .Values.caSecretName }}
+  duration: {{ .Values.certDurations.ca }}
+  issuerRef:
+    name: {{ include "cert-manager-webhook-njalla.name" . }}-selfsign
+  commonName: "ca.{{ include "cert-manager-webhook-njalla.name" . }}.cert-manager"
+  isCA: true
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Values.tlsSecretName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "cert-manager-webhook-njalla.name" . }}
+spec:
+  secretName: {{ .Values.tlsSecretName }}
+  duration: {{ .Values.certDurations.tls }}
+  issuerRef:
+    name: {{ include "cert-manager-webhook-njalla.name" . }}-ca
+  dnsNames:
+    - {{ include "cert-manager-webhook-njalla.name" . }}
+    - {{ include "cert-manager-webhook-njalla.name" . }}.{{ .Values.namespace }}
+    - {{ include "cert-manager-webhook-njalla.name" . }}.{{ .Values.namespace }}.svc
+    - {{ include "cert-manager-webhook-njalla.name" . }}.{{ .Values.namespace }}.svc.cluster.local

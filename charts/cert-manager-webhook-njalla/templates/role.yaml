@@ -1,0 +1,11 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "cert-manager-webhook-njalla.name" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "cert-manager-webhook-njalla.name" . }}
+rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get"]

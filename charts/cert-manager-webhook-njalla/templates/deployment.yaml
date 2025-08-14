@@ -1,0 +1,60 @@
+{{ include "njalla-webhook.checkCertManager" . }}
+{{ include "njalla-webhook.checkNjallaSecret" . }}
+{{ include "njalla-webhook.checkGroupName" . }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cert-manager-webhook-njalla.name" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "cert-manager-webhook-njalla.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "cert-manager-webhook-njalla.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "cert-manager-webhook-njalla.name" . }}
+    spec:
+      serviceAccountName: {{ include "cert-manager-webhook-njalla.serviceAccountName" . }}
+      securityContext:
+{{ toYaml .Values.podSecurityContext | indent 8 }}
+      containers:
+        - name: {{ include "cert-manager-webhook-njalla.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - --tls-cert-file=/tls/tls.crt
+            - --tls-private-key-file=/tls/tls.key
+            - --secure-port={{ .Values.containerPort }}
+          env:
+            - name: GROUP_NAME
+              value: {{ .Values.groupName | quote }}
+          ports:
+            - name: https
+              containerPort: {{ .Values.containerPort }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              scheme: HTTPS
+              path: /healthz
+              port: https
+          readinessProbe:
+            httpGet:
+              scheme: HTTPS
+              path: /healthz
+              port: https
+          volumeMounts:
+            - name: certs
+              mountPath: /tls
+              readOnly: true
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          securityContext:
+{{ toYaml .Values.containerSecurityContext | indent 12 }}
+      volumes:
+        - name: certs
+          secret:
+            secretName: {{ .Values.tlsSecretName }}

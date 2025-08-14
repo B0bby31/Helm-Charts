@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: {{ include "cert-manager-webhook-njalla.name" . }}-selfsign
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "cert-manager-webhook-njalla.name" . }}
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: {{ include "cert-manager-webhook-njalla.name" . }}-ca
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "cert-manager-webhook-njalla.name" . }}
+spec:
+  ca:
+    secretName: {{ .Values.caSecretName }}

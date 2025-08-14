@@ -1,0 +1,77 @@
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/b0bby31/cert-manager-webhook-njalla
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+
+#### These values must be set by you
+
+# Namespace to deploy this to; that is the namespace with your cert-manager deployment
+namespace: cert-manager
+
+# Groupname used in the various roles created (set this to acme.YOURDOMAIN )
+groupName: ""
+
+# The NJALLA api token secret, you have to fill in one of these options
+njalla:
+  existingSecret: ""    # Specify an existing secret with a token field
+  token: ""             # Create a new secret with this api token
+
+# Email used for creating a letsencrypt staging issuer
+email: "" # You must set this to run the helm test
+
+####
+
+# This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+imagePullSecrets: []
+# This is to override the chart name.
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  name: ""
+
+service:
+  type: ClusterIP
+  port: 443
+  targetPort: 8443
+
+containerPort: 8443
+
+resources: {}
+
+tlsSecretName: njalla-webhook-webhook-tls
+caSecretName: njalla-webhook-ca
+
+certDurations:
+  ca: 43800h   # 5 years
+  tls: 8760h   # 1 year
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
+  fsGroup: 1000
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+
+# Used for testing the chart, it includes a cert-manager install check
+skipCertManagerCheck: false
