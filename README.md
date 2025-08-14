@@ -10,4 +10,5 @@ As of current, I have charts for the following apps:
 
 * [Homebox](https://github.com/sysadminsmedia/homebox)
 * [Split-Pro](https://github.com/oss-apps/split-pro)
+* [Cert-Manager-Njalla](https://github.com/B0bby31/cert-manager-webhook-njalla)
 
