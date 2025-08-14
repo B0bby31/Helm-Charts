@@ -1,5 +1,22 @@
 apiVersion: v1
 entries:
+  cert-manager-webhook-njalla:
+  - apiVersion: v2
+    appVersion: v0.2.1
+    created: "2025-08-14T17:51:53.786587006Z"
+    description: A Helm chart to deploy a webhook ACME solver for Njalla
+    digest: 40119b04f58716b237720a4f092bd012b603a916c1de739780c9b1957a0e3ea3
+    maintainers:
+    - email: b0bby31@plutode.com
+      name: B0bby31
+    name: cert-manager-webhook-njalla
+    sources:
+    - https://github.com/B0bby31/cert-manager-webhook-njalla
+    - https://github.com/B0bby31/Helm-Charts
+    type: application
+    urls:
+    - https://github.com/B0bby31/Helm-Charts/releases/download/cert-manager-webhook-njalla-0.1.0/cert-manager-webhook-njalla-0.1.0.tgz
+    version: 0.1.0
   homebox:
   - apiVersion: v2
     appVersion: 0.18.0
@@ -194,4 +211,4 @@ entries:
     urls:
     - https://github.com/B0bby31/Helm-Charts/releases/download/split-pro-0.1.0/split-pro-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-16T14:05:17.783019911Z"
+generated: "2025-08-14T17:51:53.92913664Z"
