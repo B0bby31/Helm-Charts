@@ -101,6 +101,37 @@ entries:
   invidious:
   - apiVersion: v2
     appVersion: v3.20250926
+    created: "2025-10-18T10:09:58.370489907Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: ~16.7.27
+    description: Invidious is an alternative front-end to YouTube
+    digest: 4d501c890a2dee08c7618546900d09eb5c341687af62692196964b0f98194165
+    home: https://invidious.io
+    icon: https://raw.githubusercontent.com/iv-org/invidious/05988c1c49851b7d0094fca16aeaf6382a7f64ab/assets/favicon-32x32.png
+    keywords:
+    - youtube
+    - proxy
+    - video
+    - privacy
+    maintainers:
+    - email: mail@leonklingele.de
+      name: Leon Klingele
+    - name: JuniorJPDJ
+      url: https://github.com/JuniorJPDJ
+    - name: ildoc
+      url: https://github.com/ildoc
+    name: invidious
+    sources:
+    - https://github.com/iv-org/invidious
+    type: application
+    urls:
+    - https://github.com/B0bby31/Helm-Charts/releases/download/invidious-3.2.0/invidious-3.2.0.tgz
+    version: 3.2.0
+  - apiVersion: v2
+    appVersion: v3.20250926
     created: "2025-10-18T09:54:33.398542647Z"
     dependencies:
     - condition: postgresql.enabled
@@ -301,4 +332,4 @@ entries:
     urls:
     - https://github.com/B0bby31/Helm-Charts/releases/download/split-pro-0.1.0/split-pro-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-18T09:54:33.398577362Z"
+generated: "2025-10-18T10:09:58.370545481Z"
